@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Fitness Bot</title>
+    
+    <style>
+        /* Global style */
+
+        body {
+            padding: 50px;
+        }
+
+        .btn-tertiary {
+            color: #555;
+            padding: 0;
+            line-height: 40px;
+            width: 300px;
+            margin: auto;
+            display: block;
+            border: 2px solid #555;
+
+            &:hover,
+            &:focus {
+                color: lighten(#555, 20%);
+                border-color: lighten(#555, 20%);
+            }
+        }
+
+        /* input file style */
+
+        .input-file {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+
+            +.js-labelFile {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 0 10px;
+                cursor: pointer;
+
+                .icon:before {
+                    content: "\f093";
+                }
+
+                &.has-file {
+                    .icon:before {
+                        content: "\f00c";
+                        color: #5AAC7B;
+                    }
+                }
+            }
+        }
+    </style>
+
+<body>
+    <form style="text-align:center;" action="http://localhost:5000/" method="POST" enctype="multipart/form-data">
+        <input type="file" id="myfile" , name="input_image" accept=[".jpg",".jpeg"]>
+        <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if data %}
+    <h1 class="mt-4 mb-3 text-center"><b>Similar Products to your Uploaded Image!</b></h1>
+    <section class="row">
+        {% for i in data %}
+        <section class="col-md-4 col-sm-6 text-center">
+            <img src="static/images/{{ i.Input_Image }}" alt="none" style="height: 300px; width: 300px;">
+            <p>{{ i.Title }}</p>
+            <p>{{ i.Category }}</p>
+            <p>{{ i.Product_Type }}</p>
+
+        </section>
+        {% endfor %}
+    </section>
+    {% endif %}
+</body>
+
+</html>
+
+
+
+ProductId	Gender	Category	SubCategory	ProductType	Colour	Usage	ProductTitle
